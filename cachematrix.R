@@ -28,6 +28,13 @@ makeCacheMatrix <- function(x = matrix()) {
         ## output
         ##      list of above mentioned functions
         
+        ##################################################################################################
+        ## Amendment History                                                                            ##
+        ##                                                                                              ##
+        ## Manish Gupta         21st May        Initial Version                                         ##
+        ## Manish Gupta         22nd May        Added more comments                                     ##
+        ##################################################################################################
+                
         inverseMatrix <- NULL                   ## initializing to Null in the begining
 
         setMatrixF <- function(newMatrix) {
@@ -66,6 +73,13 @@ cacheSolve <- function(x, ...) {
         ## output
         ##      returns inverse of the matrix "x" 
         ##      if the inverse of matrix is already calculated, it will fetch it from cache
+        
+        ##################################################################################################
+        ## Amendment History                                                                            ##
+        ##                                                                                              ##
+        ## Manish Gupta         21st May        Initial Version                                         ##
+        ## Manish Gupta         22nd May        Added more comments                                     ##
+        ##################################################################################################        
         
         inverseMatrix <- x$getInverseMatrixF()
         
