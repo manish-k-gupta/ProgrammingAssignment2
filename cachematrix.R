@@ -4,8 +4,9 @@
 
 
 ## makeCacheMatrix - This function will create special "matrix" object, it also has provision for caching the
-##                   inverse of the matrix returned by this function, this inverse will be computed by another 
-##                   function cacheSolve
+##                   inverse of the matrix which is returned by this function, this inverse will be computed by 
+##                   another function cacheSolve
+##                   
 ##                   This special "matrix" object is basically a list consist of following functions
 ##                           set the value of matrix
 ##                           get the value of matrix
@@ -27,12 +28,12 @@ makeCacheMatrix <- function(x = matrix()) {
         ## output
         ##      list of above mentioned functions
         
-        inverseMatrix <- NULL
+        inverseMatrix <- NULL                   ## initializing to Null in the begining
 
         setMatrixF <- function(newMatrix) {
                 x <<- newMatrix
-                inverseMatrix <<- NULL          ## initializing it to null, because matrix "x" may get changed 
-        }                                                                              
+                inverseMatrix <<- NULL          ## initializing to null again, because matrix "x" may get changed 
+        }                                                                               
                                         
         getMatrixF <- function() x
         
@@ -47,6 +48,11 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## cacheSolve - This function computes the inverse of the special "matrix" object created by function
 ##              makeCacheMatrix, if the inverse is already calculated, it will retrieve it from cache 
+##                      this function will use the following functions
+##                      get the value of matrix        
+##                      set the value of inverse of the matrix
+##                      get the value of inverse of the matrix
+##
 
 cacheSolve <- function(x, ...) {
         
@@ -64,12 +70,12 @@ cacheSolve <- function(x, ...) {
         inverseMatrix <- x$getInverseMatrixF()
         
         if(!is.null(inverseMatrix)) {           
-                message("getting inverse matrix from cache memory")
+                message("getting inverse matrix from cache")
                 return(inverseMatrix)
         }
         
-        tempMatrix <- x$getMatrixF()
-        inverseMatrix <- solve(tempMatrix, ...)
+        tempMatrix <- x$getMatrixF()            # to store the matrix
+        inverseMatrix <- solve(tempMatrix, ...) 
         x$setMatrixInverseF(inverseMatrix)
         inverseMatrix 
 }
